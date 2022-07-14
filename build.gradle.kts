@@ -16,6 +16,12 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
+tasks.withType(KotlinCompile::class.java).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 configure<PublishingExtension> {
     repositories {
         maven {
