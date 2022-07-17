@@ -6,6 +6,7 @@ import gg.virtualclient.virtualevents.listener.EventPriority
 import gg.virtualclient.virtualevents.listener.RegisteredListener
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
+import java.util.function.Consumer
 
 class EventBusImpl : EventBus {
 
@@ -30,7 +31,7 @@ class EventBusImpl : EventBus {
     override fun <T : Event> register(
         eventClass: Class<T>,
         priority: EventPriority,
-        block: (event: T) -> Unit
+        block: Consumer<T>
     ): RegisteredListener<T> {
         return register(null, eventClass, priority, block)
     }
@@ -48,7 +49,7 @@ class EventBusImpl : EventBus {
         listener: Any?,
         eventClass: Class<T>,
         priority: EventPriority,
-        block: (event: T) -> Unit
+        block: Consumer<T>
     ): RegisteredListener<T> {
         val registeredListener = RegisteredListener(listener, priority, block)
         val listeners = getOrCreateListenerList(eventClass)

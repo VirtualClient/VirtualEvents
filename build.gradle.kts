@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "gg.virtualclient"
-version = "1.0-SNAPSHOT"
+version = "1.0.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -16,10 +16,8 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
-tasks.withType(KotlinCompile::class.java).all {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 configure<PublishingExtension> {
@@ -34,7 +32,7 @@ configure<PublishingExtension> {
         create<MavenPublication>("maven") {
             groupId = "gg.virtualclient"
             artifactId = "VirtualEvents"
-            version = "1.0-SNAPSHOT"
+            version = "1.0.1-SNAPSHOT"
             from(components["java"])
         }
     }
@@ -44,8 +42,4 @@ configure<PublishingExtension> {
 
 tasks.test {
     useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
 }
