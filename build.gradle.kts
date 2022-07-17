@@ -32,7 +32,7 @@ configure<PublishingExtension> {
         create<MavenPublication>("maven") {
             groupId = "gg.virtualclient"
             artifactId = "VirtualEvents"
-            version = "1.0.1-SNAPSHOT"
+            version = "1.0.3-SNAPSHOT"
             from(components["java"])
         }
     }

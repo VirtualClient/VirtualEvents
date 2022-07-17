@@ -40,7 +40,7 @@ class EventBusImpl : EventBus {
         val listeners: MutableList<RegisteredListener<out Event>>? = listeners[event.javaClass]
         listeners?.sortedBy { it.priority.ordinal }?.forEach {
             @Suppress("UNCHECKED_CAST")
-            (it.executor as (event: Event) -> Unit).invoke(event)
+            (it.executor as Consumer<Event>).accept(event)
         }
         return event
     }
